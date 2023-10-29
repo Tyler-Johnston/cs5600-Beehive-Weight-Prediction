@@ -46,24 +46,195 @@ def predict_temp_weight_ann(train_temps, train_weights, test_temps, test_weights
     X, y = partition_dataset_into_samples(train_dataset, num_steps)
     num_features = X.shape[2]
 
-    ### YOUR ANN MODEL SHOULD BE CONSTRUCTED HERE.
-    # 2. Construct ANN model
+    # ## YOUR ANN MODEL SHOULD BE CONSTRUCTED HERE.
     # model = Sequential()
-    # model.add(Dense(5, input_shape=(num_steps, num_features), activation='relu'))
+    # model.add(Dense(10, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(30, activation='relu'))
+    # model.add(Dense(30, activation='relu'))
     # model.add(Flatten())
-    # model.add(Dense(num_features))    
+    # model.add(Dense(num_features, activation='relu'))
     # model.compile(optimizer='adam', loss='mse')
 
-    # ANN Model
+    # Model 1: Basic ANN with ReLU: MSE of .8566 (re-ran got 1.something / weird graph)(output = relu = 1.26ish)
+    # model = Sequential()
+    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # Model 2: Model 2: Basic ANN with tanh: MSE of .99 (graph flat)
+    # model = Sequential()
+    # model.add(Dense(8, activation='tanh', input_shape=(num_steps, num_features)))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # Model 3: Two-layer ANN with ReLU and tanh: MSE of 1.17 (graph flat)
+    # model = Sequential()
+    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='tanh'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # Model 4: Two-layer ANN with tanh and ReLU: MSE of 1.08 (flat)
+    # model = Sequential()
+    # model.add(Dense(8, activation='tanh', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # Model 5: Three-layer ANN with ReLU: MSE of .979
+    # model = Sequential()
+    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # Model 6: Three-layer ANN with tanh: MSE of 1.27 (flat)
+    # model = Sequential()
+    # model.add(Dense(8, activation='tanh', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='tanh'))
+    # model.add(Dense(8, activation='tanh'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # Model 7: Three-layer ANN with Mixed Activation Functions (1.05 mse & flat)
+    # model = Sequential()
+    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='tanh'))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # Model 8: Four-layer ANN with ReLU mse: 1.33 
+    # model = Sequential()
+    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # Model 9: Four-layer ANN with tanh: 1.25 flat
+    # model = Sequential()
+    # model.add(Dense(8, activation='tanh', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='tanh'))
+    # model.add(Dense(8, activation='tanh'))
+    # model.add(Dense(8, activation='tanh'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # mse : .8629 
+    # model = Sequential()
+    # model.add(Dense(16, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(16, activation='relu'))
+    # model.add(Dense(16, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # mse 1.26 relatively flat
+    # model = Sequential()
+    # model.add(Dense(8, activation='sigmoid', input_shape=(num_steps, num_features)))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # 1.19 flat
+    # model = Sequential()
+    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='sigmoid'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # 1.05 flat
+    # model = Sequential()
+    # model.add(Dense(8, activation='sigmoid', input_shape=(num_steps, num_features)))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Dense(8, activation='tanh'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # model = Sequential()
+    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(16, activation='sigmoid'))
+    # model.add(Dense(8, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # model = Sequential()
+    # model.add(Dense(12, activation='sigmoid', input_shape=(num_steps, num_features)))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # model = Sequential()
+    # model.add(Dense(10, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(20, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # .98 loss .75
+    # model = Sequential()
+    # model.add(Dense(16, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(32, activation='relu'))
+    # model.add(Dense(16, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # .99 
+    # model = Sequential()
+    # model.add(Dense(12, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(18, activation='relu'))
+    # model.add(Dense(24, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # # .88, 1.21 when re-ran
+    # model = Sequential()
+    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
+    # model.add(Dense(12, activation='relu'))
+    # model.add(Dense(16, activation='relu'))
+    # model.add(Flatten())
+    # model.add(Dense(num_features, activation='linear'))
+    # model.compile(optimizer='adam', loss='mse')
+
+    # .95, .97 graph looks clean, loss .75ish. pretty consistent even though it is off-set
     model = Sequential()
-    # Flatten the input
-    model.add(Flatten(input_shape=(num_steps, num_features)))
-    # Add a dense layer with 50 units and 'relu' activation function
-    model.add(Dense(30, activation='relu'))
-    # Add a dense layer with 1 unit (for output)
-    model.add(Dense(num_features))
-    # Compile the model
+    model.add(Dense(4, activation='relu', input_shape=(num_steps, num_features)))
+    model.add(Dense(6, activation='relu'))
+    model.add(Dense(12, activation='relu'))
+    model.add(Flatten())
+    model.add(Dense(num_features, activation='linear'))
     model.compile(optimizer='adam', loss='mse')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     model.fit(X, y, epochs=num_epochs, verbose=1)
     model.save(saved_model_name)
@@ -325,6 +496,12 @@ if __name__ == '__main__':
                          pre_process=None,
                          num_epochs=2000,
                          model_name='ann_tp_to_wt.h5')
+
+#    train_weight_temp_ann(hiveid=2120, monthid='July', period='P4',
+#                          num_steps=12,
+#                          pre_process=None,
+#                          num_epochs=2000,
+#                          model_name='ann_tp_to_wt.h5')
 
 #    train_weight_temp_convnet(hiveid=2059, monthid='June', period='P3',
 #                              num_steps=12,
