@@ -46,199 +46,24 @@ def predict_temp_weight_ann(train_temps, train_weights, test_temps, test_weights
     X, y = partition_dataset_into_samples(train_dataset, num_steps)
     num_features = X.shape[2]
 
-    # ## YOUR ANN MODEL SHOULD BE CONSTRUCTED HERE.
-    # model = Sequential()
-    # model.add(Dense(10, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(30, activation='relu'))
-    # model.add(Dense(30, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='relu'))
-    # model.compile(optimizer='adam', loss='mse')
+    # YOUR ANN MODEL SHOULD BE CONSTRUCTED HERE.
 
-    # Model 1: Basic ANN with ReLU: MSE of .8566 (re-ran got 1.something / weird graph)(output = relu = 1.26ish)
-    # model = Sequential()
-    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # Model 2: Model 2: Basic ANN with tanh: MSE of .99 (graph flat)
-    # model = Sequential()
-    # model.add(Dense(8, activation='tanh', input_shape=(num_steps, num_features)))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # Model 3: Two-layer ANN with ReLU and tanh: MSE of 1.17 (graph flat)
-    # model = Sequential()
-    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='tanh'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # Model 4: Two-layer ANN with tanh and ReLU: MSE of 1.08 (flat)
-    # model = Sequential()
-    # model.add(Dense(8, activation='tanh', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # Model 5: Three-layer ANN with ReLU: MSE of .979
-    # model = Sequential()
-    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # Model 6: Three-layer ANN with tanh: MSE of 1.27 (flat)
-    # model = Sequential()
-    # model.add(Dense(8, activation='tanh', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='tanh'))
-    # model.add(Dense(8, activation='tanh'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # Model 7: Three-layer ANN with Mixed Activation Functions (1.05 mse & flat)
-    # model = Sequential()
-    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='tanh'))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # Model 8: Four-layer ANN with ReLU mse: 1.33 
-    # model = Sequential()
-    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # Model 9: Four-layer ANN with tanh: 1.25 flat
-    # model = Sequential()
-    # model.add(Dense(8, activation='tanh', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='tanh'))
-    # model.add(Dense(8, activation='tanh'))
-    # model.add(Dense(8, activation='tanh'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # mse : .8629 
-    # model = Sequential()
-    # model.add(Dense(16, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(16, activation='relu'))
-    # model.add(Dense(16, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # mse 1.26 relatively flat
-    # model = Sequential()
-    # model.add(Dense(8, activation='sigmoid', input_shape=(num_steps, num_features)))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # 1.19 flat
-    # model = Sequential()
-    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='sigmoid'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # 1.05 flat
-    # model = Sequential()
-    # model.add(Dense(8, activation='sigmoid', input_shape=(num_steps, num_features)))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Dense(8, activation='tanh'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # model = Sequential()
-    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(16, activation='sigmoid'))
-    # model.add(Dense(8, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # model = Sequential()
-    # model.add(Dense(12, activation='sigmoid', input_shape=(num_steps, num_features)))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # model = Sequential()
-    # model.add(Dense(10, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(20, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # .98 loss .75
-    # model = Sequential()
-    # model.add(Dense(16, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(32, activation='relu'))
-    # model.add(Dense(16, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # .99 
-    # model = Sequential()
-    # model.add(Dense(12, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(18, activation='relu'))
-    # model.add(Dense(24, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # # .88, 1.21 when re-ran
-    # model = Sequential()
-    # model.add(Dense(8, activation='relu', input_shape=(num_steps, num_features)))
-    # model.add(Dense(12, activation='relu'))
-    # model.add(Dense(16, activation='relu'))
-    # model.add(Flatten())
-    # model.add(Dense(num_features, activation='linear'))
-    # model.compile(optimizer='adam', loss='mse')
-
-    # .95, .97 graph looks clean, loss .75ish. pretty consistent even though it is off-set
     model = Sequential()
     model.add(Dense(4, activation='relu', input_shape=(num_steps, num_features)))
     model.add(Dense(6, activation='relu'))
-    model.add(Dense(12, activation='relu'))
     model.add(Flatten())
     model.add(Dense(num_features, activation='linear'))
     model.compile(optimizer='adam', loss='mse')
 
+    # uncomment to run the inital model on the dataset
+    # model.fit(X, y, epochs=num_epochs, verbose=1)
+    # model.save(saved_model_name)
+    # loaded_model = load_model(saved_model_name)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    model.fit(X, y, epochs=num_epochs, verbose=1)
-    model.save(saved_model_name)
+    # # uncomment to train/retest on new datasets
     loaded_model = load_model(saved_model_name)
+    loaded_model.fit(X, y, epochs=num_epochs, verbose=1)
+    loaded_model.save(saved_model_name)
 
     test_in_seq  = np.array(test_temps)
     test_out_seq = np.array(test_weights)
@@ -287,34 +112,24 @@ def predict_temp_weight_convnet(train_temps, train_weights, test_temps, test_wei
     num_features = X.shape[2]
 
     ### YOUR CONVNET MODEL SHOULD BE CONSTRUCTED HERE.   
-    # 2. Build a ConvNet model
+
     model = Sequential()
-    model.add(Conv1D(filters=5, kernel_size=2, activation='relu',
+    model.add(Conv1D(filters=4, kernel_size=2, activation='relu',
                      input_shape=(num_steps, num_features)))
     model.add(MaxPooling1D(pool_size=2))
     model.add(Flatten())
-    model.add(Dense(10, activation='relu'))
+    model.add(Dense(4, activation='relu'))
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mse')
-
-    # # ConvNet Model
-    # model = Sequential()
-    # # Add 1D Convolutional layer with 64 filters, kernel size of 2 and 'relu' activation function
-    # model.add(Conv1D(filters=64, kernel_size=2, activation='relu', input_shape=(num_steps, num_features)))
-    # # Add MaxPooling layer
-    # model.add(MaxPooling1D(pool_size=2))
-    # # Flatten the output
-    # model.add(Flatten())
-    # # Add a dense layer with 50 units
-    # model.add(Dense(50, activation='relu'))
-    # # Add a dense layer with 1 unit (for output)
-    # model.add(Dense(1))
-    # # Compile the model
-    # model.compile(optimizer='adam', loss='mse')    
 
     model.fit(X, y, epochs=num_epochs, verbose=1)
     model.save(saved_model_name)
     loaded_model = load_model(saved_model_name)
+    
+    # # uncomment to train/retest on new datasets
+    # loaded_model = load_model(saved_model_name)
+    # loaded_model.fit(X, y, epochs=num_epochs, verbose=1)
+    # loaded_model.save(saved_model_name)
 
     test_in_seq  = np.array(test_temps)
     test_out_seq = np.array(test_weights)
@@ -362,21 +177,7 @@ def predict_temp_weight_lstm(train_temps, train_weights, test_temps, test_weight
     num_features = X.shape[2]
 
     ### YOUR LSTM MODEL SHOULD BE DEFINED HERE.
-    # 2. Build a model
-    model = Sequential()
-    model.add(LSTM(10, activation='relu', input_shape=(num_steps, num_features)))
-    model.add(Dense(num_features))
-    model.compile(optimizer='adam', loss='mse')
 
-    # # LSTM Model
-    # model = Sequential()
-    # # Add LSTM layer with 50 units and 'relu' activation function. Input shape is (n_steps, n_features)
-    # model.add(LSTM(50, activation='relu', input_shape=(num_steps, num_features)))
-    # # Add a dense layer with 1 unit (for output)
-    # model.add(Dense(num_features))
-    # # Compile the model
-    # model.compile(optimizer='adam', loss='mse')
-    
     model.fit(X, y, epochs=num_epochs, verbose=1)
     model.save(saved_model_name)
     loaded_model = load_model(saved_model_name)
@@ -491,23 +292,17 @@ if __name__ == '__main__':
 
    ### uncomment to run.
    
-   train_weight_temp_ann(hiveid=2059, monthid='June', period='P3',
-                         num_steps=12,
-                         pre_process=None,
-                         num_epochs=2000,
-                         model_name='ann_tp_to_wt.h5')
-
-#    train_weight_temp_ann(hiveid=2120, monthid='July', period='P4',
+#    train_weight_temp_ann(hiveid=2059, monthid='June', period='P3',
 #                          num_steps=12,
 #                          pre_process=None,
 #                          num_epochs=2000,
 #                          model_name='ann_tp_to_wt.h5')
 
-#    train_weight_temp_convnet(hiveid=2059, monthid='June', period='P3',
-#                              num_steps=12,
-#                              pre_process=None,
-#                              num_epochs=2000,
-#                              model_name='convnet_tp_to_wt.h5')   
+   train_weight_temp_convnet(hiveid=2059, monthid='June', period='P3',
+                             num_steps=12,
+                             pre_process=None,
+                             num_epochs=2000,
+                             model_name='convnet_tp_to_wt.h5')   
    
 #    train_weight_temp_lstm(hiveid=2059, monthid='June', period='P3',
 #                           num_steps=12,
