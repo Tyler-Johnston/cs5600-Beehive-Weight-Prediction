@@ -46,8 +46,6 @@ def predict_temp_weight_ann(train_temps, train_weights, test_temps, test_weights
     X, y = partition_dataset_into_samples(train_dataset, num_steps)
     num_features = X.shape[2]
 
-    # YOUR ANN MODEL SHOULD BE CONSTRUCTED HERE.
-
     model = Sequential()
     model.add(Dense(4, activation='relu', input_shape=(num_steps, num_features)))
     model.add(Dense(6, activation='relu'))
@@ -60,10 +58,10 @@ def predict_temp_weight_ann(train_temps, train_weights, test_temps, test_weights
     # model.save(saved_model_name)
     # loaded_model = load_model(saved_model_name)
 
-    # # uncomment to train/retest on new datasets
     loaded_model = load_model(saved_model_name)
-    loaded_model.fit(X, y, epochs=num_epochs, verbose=1)
-    loaded_model.save(saved_model_name)
+    # uncomment to train/retest on new datasets
+    # loaded_model.fit(X, y, epochs=num_epochs, verbose=1)
+    # loaded_model.save(saved_model_name)
 
     test_in_seq  = np.array(test_temps)
     test_out_seq = np.array(test_weights)
@@ -111,8 +109,6 @@ def predict_temp_weight_convnet(train_temps, train_weights, test_temps, test_wei
     X, y = partition_dataset_into_samples(train_dataset, num_steps)
     num_features = X.shape[2]
 
-    ### YOUR CONVNET MODEL SHOULD BE CONSTRUCTED HERE.   
-
     model = Sequential()
     model.add(Conv1D(filters=4, kernel_size=2, activation='relu',
                      input_shape=(num_steps, num_features)))
@@ -122,12 +118,13 @@ def predict_temp_weight_convnet(train_temps, train_weights, test_temps, test_wei
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mse')
 
-    model.fit(X, y, epochs=num_epochs, verbose=1)
-    model.save(saved_model_name)
-    loaded_model = load_model(saved_model_name)
-    
-    # # uncomment to train/retest on new datasets
+    # uncomment to run the inital model on the dataset
+    # model.fit(X, y, epochs=num_epochs, verbose=1)
+    # model.save(saved_model_name)
     # loaded_model = load_model(saved_model_name)
+    
+    loaded_model = load_model(saved_model_name)
+    # uncomment to train/retest on new datasets
     # loaded_model.fit(X, y, epochs=num_epochs, verbose=1)
     # loaded_model.save(saved_model_name)
 
@@ -175,25 +172,19 @@ def predict_temp_weight_lstm(train_temps, train_weights, test_temps, test_weight
 
     X, y = partition_dataset_into_samples(train_dataset, num_steps)
     num_features = X.shape[2]
-
-    ### YOUR LSTM MODEL SHOULD BE DEFINED HERE.
-
-    # model = Sequential()
-    # model.add(LSTM(18, activation='tanh', input_shape=(num_steps, num_features)))
-    # model.add(Dense(num_features))
-    # model.compile(optimizer='adam', loss='mse')
     
     model = Sequential()
     model.add(LSTM(23, activation='relu', input_shape=(num_steps, num_features)))
     model.add(Dense(num_features))
     model.compile(optimizer='adam', loss='mse')
     
-    model.fit(X, y, epochs=num_epochs, verbose=1)
-    model.save(saved_model_name)
-    loaded_model = load_model(saved_model_name)
-
-    # # uncomment to train/retest on new datasets
+    # uncomment to run the inital model on the dataset
+    # model.fit(X, y, epochs=num_epochs, verbose=1)
+    # model.save(saved_model_name)
     # loaded_model = load_model(saved_model_name)
+
+    loaded_model = load_model(saved_model_name)
+    # uncomment to train/retest on new datasets
     # loaded_model.fit(X, y, epochs=num_epochs, verbose=1)
     # loaded_model.save(saved_model_name)
 
@@ -307,17 +298,17 @@ if __name__ == '__main__':
 
    ### uncomment to run.
    
-#    train_weight_temp_ann(hiveid=2059, monthid='June', period='P3',
-#                          num_steps=12,
-#                          pre_process=None,
-#                          num_epochs=2000,
-#                          model_name='ann_tp_to_wt.h5')
+   train_weight_temp_ann(hiveid=2059, monthid='June', period='P3',
+                         num_steps=12,
+                         pre_process=None,
+                         num_epochs=2000,
+                         model_name='ann_tp_to_wt.h5')
 
-#    train_weight_temp_convnet(hiveid=2059, monthid='June', period='P3',
-#                              num_steps=12,
-#                              pre_process=None,
-#                              num_epochs=2000,
-#                              model_name='convnet_tp_to_wt.h5')   
+   train_weight_temp_convnet(hiveid=2059, monthid='June', period='P3',
+                             num_steps=12,
+                             pre_process=None,
+                             num_epochs=2000,
+                             model_name='convnet_tp_to_wt.h5')   
    
    train_weight_temp_lstm(hiveid=2059, monthid='June', period='P3',
                           num_steps=12,

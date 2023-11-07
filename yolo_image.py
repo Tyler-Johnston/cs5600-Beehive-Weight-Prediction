@@ -25,7 +25,7 @@ CONFIG_DICT = {
     'debug': True,
     'INIT_LR': 1e-3,
     'BATCH_SIZE': 64,
-    'EPOCHS': 3,
+    'EPOCHS': 75,
     'TRAIN_SPLIT': 0.75,
 }
 
@@ -112,7 +112,8 @@ model = YOLO_Classifier(num_classes).to(device)
 
 # Define the loss function (e.g., CrossEntropyLoss) and optimizer (e.g., SGD or␣Adam)
 lossFn = nn.CrossEntropyLoss()
-opt = torch.optim.SGD(model.parameters(), lr=0.01)
+opt = optim.Adam(model.parameters())
+# opt = torch.optim.SGD(model.parameters(), lr=0.01)
 # Training loop, validation loop, and testing loop can be implemented using the␣defined model, DataLoader, loss, and optimizer.
 
 # H is a dictionary to store training history
